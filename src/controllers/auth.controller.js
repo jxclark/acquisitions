@@ -5,7 +5,7 @@ import { createUser, authenticateUser } from '#services/auth.service.js';
 import { jwttoken } from '#utils/jwt.js';
 import { cookies } from '#utils/cookies.js';
 
-export const signup = async (req, res, next) => {
+export const signup = async (req, res) => {
   try {
     const validationResult = signupSchema.safeParse(req.body);
 
@@ -98,7 +98,7 @@ export const signin = async (req, res) => {
 export const signout = async (req, res) => {
   try {
     cookies.clear(res, 'token');
-    
+
     logger.info('User signed out successfully');
     res.status(200).json({
       message: 'User signed out successfully',
